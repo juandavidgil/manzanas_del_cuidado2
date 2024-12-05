@@ -23,7 +23,7 @@
         <main>
           <div class="container">
 
-            <h1>Servicios activos en la base de datos</h1>
+            <h2>Servicios activos en la base de datos</h2>
             <h2>Bienvenido <span id="NombreUsuario"></span></h2>
 
               <div id="tableContainer" class="table-container">
@@ -42,7 +42,7 @@
           </main>
           <main>
             <div class="containerPeticiones">
-              <h1>Servicios solicitados</h1>
+              <h2>Servicios solicitados</h2>
               <div id="tableContainerPeticiones" class="table-container">
                 <button type="submit" id="btnDesplegarPeticiones">Mostrar Peticiones</button>
                 <table id="tablaPeticiones">
@@ -52,6 +52,7 @@
                           <th>ID usuario</th>
                           <th>Fecha</th>
                           <th>Nombre del servicio solicitado</th>
+                          <th>Eliminar</th>
                       </tr>
                   </thead>
                   <tbody id="lista-Peticiones">
@@ -60,73 +61,79 @@
               </div>
             </div>
           </main>
-        <div class="section" id="manzanasSection">
-            <h2 class="sectionTitle">Añadir Manzanas</h2>
-            <form action="http://localhost:3000/Agregar-Manzana" method="post" class="RegistroUsuario">
-                <h1>Escribe el nombre de la manzana que deseas añadir<h1>
-                <input type="text" name="Nombre" id="Nombre" placeholder="Nombre de la manzana">
-                <h1>Escribe La direccion de la Manzana<h1>
-                    <input type="text" name="Direccion" id="Direccion" placeholder="Direccion De la manzana">
-                    <h1>Escribe La Localidad de la Manzana<h1>
-                        <input type="text" name="Localidad" id="Localidad" placeholder="Localidad De la manzana">
-                </select>
-                <button class="addButton" id="addManzanaBtn">Agregar Manzana</button>
-                </form>
-        </div>
-        <div class="section" id="manzanasSection">
-            <h2 class="sectionTitle">Eliminar Manzanas</h2>
-            <form action="http://localhost:3000/Eliminar-Manzana" method="post" class="RegistroUsuario">
-                <h1>Escribe el nombre de la manzana que deseas Eliminar<h1>
-                    <input type="text" name="Nombre" id="Nombre" placeholder="Nombre de la manzana">
-                <button class="removeButton" id="removeManzanaBtn">Eliminar Manzana</button>
-                </form>
-        </div>
+          <div id="tableContainerUsuario" class="table-container">
 
-        <div class="section" id="serviciosSection">
-            <h2 class="sectionTitle">Añadir Servicios</h2>
-            <form action="http://localhost:3000/Agregar-Servicio" method="post" class="RegistroUsuario">
-                <h1>Escribe el nombre del servicio que deseas añadir<h1>
-                <input type="text" name="Nombre" id="Nombre" placeholder="Nombre del servicio">
-                <h1>Escribe la Descripcion del servicio que deseas añadir<h1>
-                    <input type="text" name="Descripcion" id="Descripcion" placeholder="Descripcion del servicio">
-                </select>
-                <button class="addButton" id="addServicioBtn">Agregar Servicio</button>
-                </form>
-        </div>
-        <div class="section" id="manzanasSection">
-            <h2 class="sectionTitle">Eliminar Servicios</h2>
-            <form action="http://localhost:3000/Eliminar-Servicio" method="post" class="RegistroUsuario">
-                <h1>Escribe el nombre del servicio que deseas Eliminar<h1>
-                    <input type="text" name="Nombre" id="Nombre" placeholder="Nombre del servicio">
-                    <button class="removeButton" id="removeServicioBtn">Eliminar Servicio</button>
-                </form>
-        </div>
-
-        <div class="usuarioContainer" id="serviciosSection">
-          
-        <div id="tableContainerUsuario" class="table-container">
-          
-              <h2 class="sectionTitle">Administrador de usuario</h2>
-              <button type="submit" id="btnDesplegarUsuarios">Mostrar usuarios</button>
-              <table id="tablaUsuarios">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Numero Documento</th>
-                        <th>Editar y Eliminar</th>
-                        
-                    </tr>
-                </thead>
-                <tbody id="lista-Usuarios">
-                </tbody>
-            </table>
-            </div>
-          
-              
+          <div class="usuarioContainer" id="serviciosSection">
+            <h2 class="sectionTitle">Administrador de usuario</h2>
+            <button type="submit" id="btnDesplegarUsuarios">Mostrar usuarios</button>
+            <table id="tablaUsuarios">
+              <thead>
+                  <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Numero Documento</th>
+                      <th>Eliminar</th>
+                      
+                  </tr>
+              </thead>
+              <tbody id="lista-Usuarios">
+              </tbody>
+          </table>
+          </div>
+        
             
+          
+    </div>
+
+    <div id="cuadros">
+      <div class="section" id="manzanasSection">
+          <h2 class="sectionTitle">Añadir Manzanas</h2>
+          <form action="http://localhost:3000/Agregar-Manzana" method="post" class="RegistroUsuario">
+              <h1>Escribe el nombre de la manzana que deseas añadir<h1>
+              <input type="text" name="Nombre" id="Nombre" placeholder="Nombre de la manzana">
+              <h1>Escribe La direccion de la Manzana<h1>
+                  <input type="text" name="Direccion" id="Direccion" placeholder="Direccion De la manzana">
+                  <h1>Escribe La Localidad de la Manzana<h1>
+                      <input type="text" name="Localidad" id="Localidad" placeholder="Localidad De la manzana">
+              </select>
+              <button class="addButton" id="addManzanaBtn">Agregar Manzana</button>
+              </form>
       </div>
+      <div class="section" id="manzanasSection">
+          <h2 class="sectionTitle">Eliminar Manzanas</h2>
+          <form action="http://localhost:3000/Eliminar-Manzana" method="post" class="RegistroUsuario">
+              <h1>Escribe el nombre de la manzana que deseas Eliminar<h1>
+                  <input type="text" name="Nombre" id="Nombre" placeholder="Nombre de la manzana">
+              <button class="removeButton" id="removeManzanaBtn">Eliminar Manzana</button>
+              </form>
+      </div>
+
+      <div class="section" id="serviciosSection">
+          <h2 class="sectionTitle">Añadir Servicios</h2>
+          <form action="http://localhost:3000/Agregar-Servicio" method="post" class="RegistroUsuario">
+              <h1>Escribe el nombre del servicio que deseas añadir<h1>
+              <input type="text" name="Nombre" id="Nombre" placeholder="Nombre del servicio">
+              <h1>Escribe la Descripcion del servicio que deseas añadir<h1>
+                  <input type="text" name="Descripcion" id="Descripcion" placeholder="Descripcion del servicio">
+              </select>
+              <button class="addButton" id="addServicioBtn">Agregar Servicio</button>
+              </form>
+      </div>
+      <div class="section" id="manzanasSection">
+          <h2 class="sectionTitle">Eliminar Servicios</h2>
+          <form action="http://localhost:3000/Eliminar-Servicio" method="post" class="RegistroUsuario">
+              <h1>Escribe el nombre del servicio que deseas Eliminar<h1>
+                  <input type="text" name="Nombre" id="Nombre" placeholder="Nombre del servicio">
+                  <button class="removeButton" id="removeServicioBtn">Eliminar Servicio</button>
+              </form>
+      </div>
+
       
+        
+      
+    
+  </div>
+
     </div>
 </body>
 <script>
@@ -189,6 +196,8 @@ xhrObtener.onreadystatechange=function(){
         <td>${solicitud.USUARIOId_usuario}</td>
         <td>${new Date(solicitud.FechaHora).toLocaleDateString()}</td>
         <td>${solicitud.Nombre}</td>
+        <button type="submit" id="eliminarUsuarioBtn_${solicitud.Id_solicitud}" onclick="eliminarSolicitud(${solicitud.Id_solicitud})">Eliminar solicitud</button>
+        
        
     `;
     listaPeticiones.appendChild(row);
@@ -232,8 +241,8 @@ xhrObtener.onreadystatechange=function(){
       <td>${usuario.Nombre}</td>
       <td>${usuario.Apellido}</td>
       <td>${usuario.NumeroDocumento}</td>
-      <button  id="editarUsuarioBtn">Editar usuario</button>
-      <button  id="eliminarUsuarioBtn">Eliminar usuario</button>
+      
+      <button type="submit" id="eliminarUsuarioBtn_${usuario.Id_usuario}" onclick="eliminarUsuario(${usuario.Id_usuario})">Eliminar usuario</button>
       
       `
       listaUsuarios.appendChild(row)
@@ -249,10 +258,51 @@ xhrObtener.onreadystatechange=function(){
 xhrObtener.send()
 });
 });
+//eliminar solicitud
+function eliminarSolicitud(Id_solicitud){
+    const xhrObtener = new XMLHttpRequest();
+    console.log("eliminando...", Id_solicitud)
+    xhrObtener.open('DELETE','/eliminar-solicitud',true)
+    xhrObtener.setRequestHeader('Content-Type', 'application/json')
+    xhrObtener.onreadystatechange=function(){
+      if(xhrObtener.readyState===4){
+        if(xhrObtener.status===200){
+          alert("solicitud eliminado")
+          window.location.reload();
+        }
+
+
+        else{
+          console.error("error al eliminar la solicitud")
+        }
+     }}
+     xhrObtener.send(JSON.stringify({Id_solicitud}))
+}
+//eliminar usuario 
+function eliminarUsuario(Id_usuario){
+    const xhrObtener = new XMLHttpRequest();
+    console.log("eliminando...", Id_usuario)
+    xhrObtener.open('DELETE','/eliminar-usuarios',true)
+    xhrObtener.setRequestHeader('Content-Type', 'application/json')
+    xhrObtener.onreadystatechange=function(){
+      if(xhrObtener.readyState===4){
+        if(xhrObtener.status===200){
+          alert("usuario eliminado")
+          window.location.reload();
+        }
+
+
+        else{
+          console.error("error al eliminar el usuario")
+        }
+     }}
+     xhrObtener.send(JSON.stringify({Id_usuario}))
+}
+// })
+
+
 
 //editar usuario
-
-
 document.addEventListener("DOMContentLoaded", ()=>{
   
   //crear variables
@@ -264,13 +314,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
     xhrObtener.onreadystatechange=function(){
       if(xhrObtener.readyState===4){
         if(xhrObtener.status===200){
-//sin funciones aun
+
         }
       }}
   })
 
 })
 
-
+/* <button type="submit" id="editarUsuarioBtn_${usuario.Id_usuario}" >Editar usuario</button> */
 </script>
 </html>

@@ -3,6 +3,7 @@
 -- Active: 1729920329732@@127.0.0.1@3306
 CREATE DATABASE manzanascuidado 
     DEFAULT CHARACTER SET = 'utf8mb4';
+    
     -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
@@ -101,7 +102,11 @@ CREATE TABLE usuario (
 
 INSERT INTO usuario (Id_usuario, Nombre, Apellido, NumeroDocumento, Telefono, TipoDocumento, Correo, MANZANAId_manzana, manzana) VALUES
 (1, 'juan david', 'gil', 1141314946, 3222584820, 'Cedula de ciudadania', 'holaquehace@gmail.com', 1, NULL),
-(2, 'cristian', 'trujillo', 1030554324, 3057505192, 'Cedula de ciudadania', 'cristian123@gmail.com', 4, NULL);
+(2, 'cristian', 'trujillo', 1030554324, 3057505192, 'Cedula de ciudadania', 'cristian123@gmail.com', 2, NULL),
+(3, 'alejandro', 'montilla', 78945613, 48856354, 'Cedula de ciudadania', 'hola@gmail.com', 3, NULL),
+(4, 'paula', 'arias', 78895223, 4846549, 'Cedula de ciudadania', 'queace@gmail.com', 4, NULL),
+(5, 'oswaldo', 'perez', 458964, 12345678, 'Cedula de ciudadania', 'buenas@gmail.com', 1, NULL)
+
 
 
 CREATE TABLE solicitud (
@@ -118,7 +123,12 @@ CREATE TABLE solicitud (
 
 
 INSERT INTO solicitud (Id_solicitud, FechaHora, Estado, USUARIOId_usuario, ServicioId_servicio, Nombre) VALUES
-(1, '2024-10-10', 'Activo', 1, 1, 'Masaje');
+(1, '2025-10-10', 'Activo', 1, 1, 'Masaje'),
+(2, '2025-3-6', 'Activo', 2, 2, 'Masaje'),
+(3, '2025-4-3', 'Activo', 3, 3, 'Masaje')
+
+
+
 
 
 
@@ -136,5 +146,7 @@ SELECT * FROM manzana
 SELECT * FROM servicio
 
 SELECT * FROM usuario
+
+SELECT * FROM manzana_servicio
 
 /* DROP DATABASE manzanascuidado */
