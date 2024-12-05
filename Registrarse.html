@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="Css/Style.css" />
+</head>
+<body>
+    <form action="http://localhost:3000/insetar" method="post" class="RegistroUsuario">
+
+        <h1>Nombre</h1>
+        <input type="text" placeholder="Nombre" name="Nombre" id="Nombre" required>
+
+        <h1>Apellido</h1>
+        <input type="text" placeholder="Apellido" name="Apellido" id="Apellido" required>
+
+        <h1>Correo</h1>
+        <input type="text" placeholder="Correo" name="Correo" id="Correo" required>
+
+        <h1>Telefono</h1>
+        <input type="number" placeholder="Telefono" name="Telefono" id="Telefono" required>
+
+        <h1>Tipo de documento</h1>
+        <select name="TipoDocumento" id="TipoDocumento" required>
+
+            <option value="Cedula de ciudadania">Cedula de ciudadania</option>
+            <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+            <option value="Cedula de extranjeria">Cedula de extranjeria</option>
+
+        </select>
+
+
+        <h1>Documento</h1>
+
+        <input type="number" placeholder="Documento" name="NumeroDocumento" id="NumeroDocumento" required>
+
+        <h1>Manzana</h1>
+
+        <select name="MANZANAId_manzana" id="MANZANAId_manzana" required>
+            <option value="1">BOSA</option>
+            <option value=2>USME</option>
+            <option value=3>ANTONIO NARIÑO</option>
+            <option value=4>PUENTE ARANDA</option>
+            <option value=5>BARRIOS UNIDOS</option>
+        </select>
+
+        <button type="submit">Registrarse</button>
+        <button type="button" onclick="window.history.back();">Volver</button>
+        
+    </form>
+    
+</body>
+</html>

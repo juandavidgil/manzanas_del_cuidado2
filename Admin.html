@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista de Administrador</title>
+    <link rel="stylesheet" href="Css/Style.css">
+</head>
+
+<body>
+    
+  <div class="container">
+
+        <!-- Botón de regreso -->
+
+        <button id="backButton" class="back-btn"><a href="Inicio.html">← Volver al Inicio</a></button>
+
+        <!-- Título de la página -->
+
+        <h1 id="pageTitle">Vista de Administrador</h1>
+
+        <main>
+          <div class="container">
+
+            <h1>Servicios activos en la base de datos</h1>
+            <h2>Bienvenido <span id="NombreUsuario"></span></h2>
+
+              <div id="tableContainer" class="table-container">
+                <button type="submit" id="btnDesplegarServicios">Mostrar Servicios</button>
+                <table id="tablaServicios">
+                  <thead>
+                      <tr>
+                          <th>Nombre</th>
+                      </tr>
+                  </thead>
+                  <tbody id="lista-Servicios">
+                  </tbody>
+              </table>
+              </div>
+          </div>
+          </main>
+          <main>
+            <div class="containerPeticiones">
+              <h1>Servicios solicitados</h1>
+              <div id="tableContainerPeticiones" class="table-container">
+                <button type="submit" id="btnDesplegarPeticiones">Mostrar Peticiones</button>
+                <table id="tablaPeticiones">
+                  <thead>
+                      <tr>
+                          <th>ID Solicitud</th>
+                          <th>ID usuario</th>
+                          <th>Fecha</th>
+                          <th>Nombre del servicio solicitado</th>
+                      </tr>
+                  </thead>
+                  <tbody id="lista-Peticiones">
+                  </tbody>
+              </table>
+              </div>
+            </div>
+          </main>
+        <div class="section" id="manzanasSection">
+            <h2 class="sectionTitle">Añadir Manzanas</h2>
+            <form action="http://localhost:3000/Agregar-Manzana" method="post" class="RegistroUsuario">
+                <h1>Escribe el nombre de la manzana que deseas añadir<h1>
+                <input type="text" name="Nombre" id="Nombre" placeholder="Nombre de la manzana">
+                <h1>Escribe La direccion de la Manzana<h1>
+                    <input type="text" name="Direccion" id="Direccion" placeholder="Direccion De la manzana">
+                    <h1>Escribe La Localidad de la Manzana<h1>
+                        <input type="text" name="Localidad" id="Localidad" placeholder="Localidad De la manzana">
+                </select>
+                <button class="addButton" id="addManzanaBtn">Agregar Manzana</button>
+                </form>
+        </div>
+        <div class="section" id="manzanasSection">
+            <h2 class="sectionTitle">Eliminar Manzanas</h2>
+            <form action="http://localhost:3000/Eliminar-Manzana" method="post" class="RegistroUsuario">
+                <h1>Escribe el nombre de la manzana que deseas Eliminar<h1>
+                    <input type="text" name="Nombre" id="Nombre" placeholder="Nombre de la manzana">
+                <button class="removeButton" id="removeManzanaBtn">Eliminar Manzana</button>
+                </form>
+        </div>
+
+        <div class="section" id="serviciosSection">
+            <h2 class="sectionTitle">Añadir Servicios</h2>
+            <form action="http://localhost:3000/Agregar-Servicio" method="post" class="RegistroUsuario">
+                <h1>Escribe el nombre del servicio que deseas añadir<h1>
+                <input type="text" name="Nombre" id="Nombre" placeholder="Nombre del servicio">
+                <h1>Escribe la Descripcion del servicio que deseas añadir<h1>
+                    <input type="text" name="Descripcion" id="Descripcion" placeholder="Descripcion del servicio">
+                </select>
+                <button class="addButton" id="addServicioBtn">Agregar Servicio</button>
+                </form>
+        </div>
+        <div class="section" id="manzanasSection">
+            <h2 class="sectionTitle">Eliminar Servicios</h2>
+            <form action="http://localhost:3000/Eliminar-Servicio" method="post" class="RegistroUsuario">
+                <h1>Escribe el nombre del servicio que deseas Eliminar<h1>
+                    <input type="text" name="Nombre" id="Nombre" placeholder="Nombre del servicio">
+                    <button class="removeButton" id="removeServicioBtn">Eliminar Servicio</button>
+                </form>
+        </div>
+
+        <div class="usuarioContainer" id="serviciosSection">
+          
+          <form action="http://localhost:3000/obtener-usuarios-admin" method="post" class="RegistroUsuario">
+            <div id="tableContainerUsuario" class="table-container">
+              <h2 class="sectionTitle">Administrador de usuario</h2>
+              <button type="submit" id="btnDesplegarUsuarios">Mostrar usuarios</button>
+              <table id="tablaUsuarios">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Numero Documento</th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="lista-Usuarios">
+                </tbody>
+            </table>
+            </div>
+          
+              
+            </form>
+      </div>
+      
+    </div>
+</body>
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
+
+const serviciosContainer = document.getElementById ('tableContainer')
+const trablaServicios = document.getElementById ('tablaServicios')
+const listaServicios = document.getElementById ('lista-Servicios')
+const btnServicios = document.getElementById ('btnServicios')
+
+
+btnDesplegarServicios.addEventListener('click',()=>{
+const xhrObtener = new XMLHttpRequest();
+xhrObtener.open('POST','/obtener-servicios-admin',true)
+xhrObtener.setRequestHeader('Content-Type', 'aplication/json')
+xhrObtener.onreadystatechange=function(){
+  if(xhrObtener.readyState===4){
+    if (xhrObtener.status===200){
+    const data=JSON.parse(xhrObtener.responseText)
+    listaServicios.innerHTML=''
+    data.servicios.forEach(servicio => {
+      const row=document.createElement('tr')
+      row.innerHTML=`
+      <td>${servicio}</td>
+      `
+      listaServicios.appendChild(row)
+    
+    });
+    serviciosContainer.style.display='block'
+  }
+  else{
+    console.error('No se pueden cargar los servicios')
+  }
+}
+}
+xhrObtener.send()
+});
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+const peticionesContainer = document.getElementById ('containerPeticiones')
+const tablaPeticiones = document.getElementById ('tableContainerPeticiones')
+const listaPeticiones = document.getElementById ('lista-Peticiones')
+const btnServicios = document.getElementById ('btnServicios')
+
+btnDesplegarPeticiones.addEventListener('click',()=>{
+const xhrObtener = new XMLHttpRequest();
+xhrObtener.open('POST','/obtener-peticiones-admin',true)
+xhrObtener.setRequestHeader('Content-Type', 'aplication/json')
+xhrObtener.onreadystatechange=function(){
+  if(xhrObtener.readyState===4){
+    if (xhrObtener.status===200){
+    const data=JSON.parse(xhrObtener.responseText)
+    listaPeticiones.innerHTML=''
+    data.peticiones.forEach(solicitud => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${solicitud.Id_solicitud}</td>
+        <td>${solicitud.USUARIOId_usuario}</td>
+        <td>${new Date(solicitud.FechaHora).toLocaleDateString()}</td>
+        <td>${solicitud.Nombre}</td>
+       
+    `;
+    listaPeticiones.appendChild(row);
+    
+    });
+    peticionesContainer.style.display='block'
+  }
+  else{
+    console.error('No se pueden cargar las peticiones')
+  }
+}
+}
+xhrObtener.send()
+});
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+const usuarioContainer = document.getElementById ('usuarioContainer')
+const trablaUsuario = document.getElementById ('tableContainerUsuario')
+const listaUsuarios = document.getElementById ('lista-Usuarios')
+const btnDesplegarUsuarios = document.getElementById ('btnDesplegarUsuarios')
+
+
+btnDesplegarUsuarios.addEventListener('click',()=>{
+const xhrObtener = new XMLHttpRequest();
+xhrObtener.open('POST','/obtener-usuarios-admin',true)
+xhrObtener.setRequestHeader('Content-Type', 'application/json');
+
+xhrObtener.onreadystatechange=function(){
+  if(xhrObtener.readyState===4){
+    if (xhrObtener.status===200){
+    const data=JSON.parse(xhrObtener.responseText)
+    listaUsuarios.innerHTML=''
+    data.usuario.forEach(usuario => {
+      const row=document.createElement('tr')
+      row.innerHTML = `
+      <td>${usuario.Nombre}</td>
+      <td>${usuario.Apellido}</td>
+      <td>${usuario.NumeroDocumento}</td>
+      <button  id="editarUsuarioBtn">Editar usuario</button>
+      <button  id="eliminarUsuarioBtn">Eliminar usuario</button>
+      
+      `
+      listaUsuarios.appendChild(row)
+    
+    });
+    usuarioContainer.style.display='block'
+  }
+  else{
+    console.error('No se pueden cargar los usuarios')
+  }
+}
+}
+xhrObtener.send()
+});
+});
+
+
+
+</script>
+</html>
