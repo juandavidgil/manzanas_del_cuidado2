@@ -200,7 +200,7 @@ app.post('/obtener-peticiones-admin', async (req, res) => {
     try{
       const conect= await mysql2.createConnection(db)
       const [IDU] = await conect.execute('SELECT Id_usuario FROM usuario WHERE NumeroDocumento=?',[NumeroDocumento]);
-      await conect.query('INSERT INTO solicitud (Nombre,FechaHora,Id_usuario) values(?,?,?)',[servicio,FechaHora,IDU[0].Id_usuario]);
+      await conect.query('INSERT INTO solicitud (Nombre,FechaHora,USUARIOId_usuario) values(?,?,?)',[servicio,FechaHora,IDU[0].USUARIOId_usuario]);
       res.status(200).send('Servicios guardados exitosamente');
       await conect.end();
     } catch(error){
@@ -357,12 +357,12 @@ app.post('/obtener-usuarios-admin',async(req,res)=>{
     try{
         const connect = await mysql2.createConnection(db)
         const [datos] = await connect.execute ('SELECT DISTINCT Nombre, Apellido, NumeroDocumento FROM usuario;')
-        console.log(datos)
+        
         res.json({
             usuario: datos.map(hijo => ({
                 Nombre: hijo.Nombre,
                 Apellido: hijo.Apellido,
-                NumeroDocumento: hijo.NumeroDocumento
+                NumeroDocumento: hijo.NumeroDocumento,
             }))
         });
         await connect.end()
@@ -372,6 +372,21 @@ app.post('/obtener-usuarios-admin',async(req,res)=>{
         res.status(500).send("Pailas")
         return
     }
+})
+
+//editar usuario
+app.put('/editar-usuario', async(req, res)=>{
+    const usuario=req.session.usuario
+    try{
+        const connect = await mysql2.createConnection(db)
+        //sin funciones aun
+    }
+    catch(error){
+        console.error("error al editar usuario")
+        res.status(500).send("pailas")
+        return
+    }
+
 })
 
 
